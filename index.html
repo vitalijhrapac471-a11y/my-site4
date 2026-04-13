@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Україна</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #d8ecff, #fff8cc);
+        }
+
+        h1 {
+            color: #003399;
+            margin-bottom: 20px;
+        }
+
+        .map-box {
+            width: fit-content;
+            margin: 0 auto;
+            background: white;
+            padding: 10px;
+            border: 3px solid #003399;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+            overflow-x: auto;
+        }
+
+        .map-box img {
+            display: block;
+        }
+
+        .note {
+            margin-top: 12px;
+            font-size: 18px;
+            color: #222;
+        }
+
+        .author {
+            margin-top: 25px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #003399;
+            animation: moveText 3s infinite alternate, blink 1s infinite;
+        }
+
+        @keyframes moveText {
+            from {
+                transform: translateX(-120px);
+            }
+            to {
+                transform: translateX(120px);
+            }
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Україна</h1>
+
+    <audio id="bgmusic" autoplay loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Ваш браузер не підтримує аудіо.
+    </audio>
+
+    <div class="map-box">
+        <img src="map.jpg" alt="Карта України" usemap="#ukraine-map">
+
+        <map name="ukraine-map">
+            <area shape="rect"
+                  coords="145,1138,257,1213"
+                  href="https://uk.wikipedia.org/wiki/Рівненська_область"
+                  target="_blank"
+                  alt="Рівненська область"
+                  title="Рівненська область">
+        </map>
+
+        <div class="note">Натисніть на герб Рівненської області.</div>
+    </div>
+
+    <div class="author">Храпач Віталій, 11 клас</div>
+
+    <script>
+        const music = document.getElementById("bgmusic");
+
+        window.addEventListener("load", function () {
+            music.play().catch(function () {
+                document.addEventListener("click", function startMusic() {
+                    music.play();
+                    document.removeEventListener("click", startMusic);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
